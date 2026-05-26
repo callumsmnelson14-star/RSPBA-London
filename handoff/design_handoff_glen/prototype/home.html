@@ -55,27 +55,8 @@
     <div class="hero-photo">
       <image-slot id="hero-photo" shape="rect" placeholder="Massed bands on the green · ~960×900 landscape"></image-slot>
 
-      <!-- floating event card -->
-      <div class="event-card">
-        <div class="ec-row">
-          <span class="ec-month">June</span>
-          <span class="ec-day">14</span>
-          <span class="ec-year">2026</span>
-        </div>
-        <div class="ec-divider"></div>
-        <div class="ec-body">
-          <span class="ec-kicker">Next Branch Contest</span>
-          <h3 class="ec-title">Pipes in the Park</h3>
-          <p class="ec-loc">Castle Park, Colchester · 10:00 BST</p>
-          <div class="ec-countdown" id="countdown" data-target="2026-06-14T10:00:00+01:00">
-            <span><b data-u="d">19</b> days</span>
-            <span><b data-u="h">04</b> hrs</span>
-            <span><b data-u="m">22</b> min</span>
-            <span><b data-u="s">10</b> sec</span>
-          </div>
-          <a class="ec-cta" href="contests.html">View contest details →</a>
-        </div>
-      </div>
+      <!-- floating event card — rendered from data.js, auto-advances to next event -->
+      <div class="event-card" id="event-card"></div>
     </div>
 
     <div class="hero-text">
@@ -83,7 +64,7 @@
       <h1 class="hero-title">
         Pipe band music in <em>the south of England.</em>
       </h1>
-      <p class="hero-lede">Nineteen member bands, eight branch fixtures, and a pathway from first chanter to championship circle. Founded in 1965 to grow the pipe-band tradition south of the Tweed — and we're still at it.</p>
+      <p class="hero-lede">Nineteen member bands, six branch contests, and a pathway from first chanter to championship circle. Founded in 1965 to grow the pipe-band tradition south of the Tweed — and we're still at it.</p>
 
       <div class="hero-stats">
         <div>
@@ -91,8 +72,8 @@
           <span class="hs-l">Member bands</span>
         </div>
         <div>
-          <span class="hs-n">8</span>
-          <span class="hs-l">Branch fixtures</span>
+          <span class="hs-n">6</span>
+          <span class="hs-l">Branch contests</span>
         </div>
         <div>
           <span class="hs-n">61</span>
@@ -122,55 +103,8 @@
       <a class="section-link" href="news.html">All bulletins →</a>
     </div>
 
-    <div class="news-grid">
-      <article class="card card-lg">
-        <image-slot id="news-1" shape="rounded" radius="3" placeholder="Contest action · 16:9"></image-slot>
-        <div class="card-body">
-          <div class="card-meta">
-            <span class="card-tag">Results</span>
-            <time>18 May 2026</time>
-          </div>
-          <h3>PM Jim McGinn Memorial · Wyton-on-the-Hill, Huntingdon</h3>
-          <p>Nine bands competed in bright spring sunshine. Mark sheets, ensemble notes and adjudicator critiques are all published on the contest results page.</p>
-          <a href="results.html">View results →</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <image-slot id="news-2" shape="rounded" radius="3" placeholder="Documents · 4:3"></image-slot>
-        <div class="card-body">
-          <div class="card-meta">
-            <span class="card-tag tag-admin">Admin</span>
-            <time>06 May 2026</time>
-          </div>
-          <h3>Updated Branch Local Rules &amp; CIO Model</h3>
-          <p>The Branch governance documents have been refreshed for the 2026 season and are available to download.</p>
-          <a href="about.html#documents">Download documents →</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <image-slot id="news-3" shape="rounded" radius="3" placeholder="Miniband · 4:3"></image-slot>
-        <div class="card-body">
-          <div class="card-meta">
-            <span class="card-tag">Results</span>
-            <time>28 April 2026</time>
-          </div>
-          <h3>Miniband Contest · Gordon's School, Woking</h3>
-          <p>Results from the indoor mini-band and solo contests held on 19 April are now published.</p>
-          <a href="results.html">View results →</a>
-        </div>
-      </article>
-
-      <article class="card card-quote">
-        <div class="card-body">
-          <span class="card-tag tag-edu">Education</span>
-          <h3 class="quote">SQA-accredited Piping &amp; Drumming Qualifications</h3>
-          <p>Sign up now to gain formal qualifications accredited by the Scottish Qualifications Authority. Register with Cliff Hall, Branch Education Officer.</p>
-          <a href="learn.html">Find out more →</a>
-        </div>
-      </article>
-    </div>
+    <!-- news cards rendered from data.js -->
+    <div class="news-grid" id="home-news"></div>
   </div>
 </section>
 
@@ -185,74 +119,8 @@
       <a class="section-link" href="diary.html">Full diary →</a>
     </div>
 
-    <div class="diary-grid">
-      <!-- Past -->
-      <article class="dx past">
-        <header>
-          <span class="dx-month">Apr</span>
-          <span class="dx-day">19</span>
-          <span class="dx-status">Past</span>
-        </header>
-        <h4>Miniband Contest</h4>
-        <span class="dx-loc">Gordon's School, Woking</span>
-        <a href="results.html">Results →</a>
-      </article>
-
-      <article class="dx past">
-        <header>
-          <span class="dx-month">May</span>
-          <span class="dx-day">17</span>
-          <span class="dx-status">Past</span>
-        </header>
-        <h4>PM Jim McGinn Memorial</h4>
-        <span class="dx-loc">Wyton-on-the-Hill</span>
-        <a href="results.html">Results →</a>
-      </article>
-
-      <article class="dx next">
-        <header>
-          <span class="dx-month">Jun</span>
-          <span class="dx-day">14</span>
-          <span class="dx-status highlight">Next</span>
-        </header>
-        <h4>Pipes in the Park</h4>
-        <span class="dx-loc">Castle Park, Colchester</span>
-        <a href="contests.html">Enter →</a>
-      </article>
-
-      <article class="dx">
-        <header>
-          <span class="dx-month">Jul</span>
-          <span class="dx-day">12</span>
-          <span class="dx-status">Highland</span>
-        </header>
-        <h4>Corby Highland Gathering</h4>
-        <span class="dx-loc">East Carlton Country Park</span>
-        <a href="diary.html#corby">Details →</a>
-      </article>
-
-      <article class="dx major">
-        <header>
-          <span class="dx-month">Sep</span>
-          <span class="dx-day">06</span>
-          <span class="dx-status highlight">Major</span>
-        </header>
-        <h4>English Championships</h4>
-        <span class="dx-loc">Chatsworth, Derbyshire</span>
-        <a href="diary.html#chatsworth">Details →</a>
-      </article>
-
-      <article class="dx">
-        <header>
-          <span class="dx-month">Nov</span>
-          <span class="dx-day">22</span>
-          <span class="dx-status">AGM</span>
-        </header>
-        <h4>Branch AGM 2026</h4>
-        <span class="dx-loc">Univ. of Bedfordshire, Luton</span>
-        <a href="diary.html#agm">Details →</a>
-      </article>
-    </div>
+    <!-- diary cards rendered from data.js — auto-flags past/next/major -->
+    <div class="diary-grid" id="home-diary"></div>
   </div>
 </section>
 
@@ -488,27 +356,16 @@
 <script type="text/babel" src="tweaks-panel.jsx"></script>
 <script type="text/babel" src="tweaks.jsx"></script>
 
+<!-- Data layer + dynamic content renderers + hidden admin panel -->
+<script src="data.js"></script>
+<script src="render.js"></script>
+<script src="admin.js"></script>
 <script>
-(function(){
-  var root = document.getElementById('countdown');
-  if (!root) return;
-  var target = new Date(root.dataset.target).getTime();
-  function tick(){
-    var diff = target - Date.now();
-    if (diff < 0) diff = 0;
-    var d = Math.floor(diff / 86400000);
-    var h = Math.floor(diff % 86400000 / 3600000);
-    var m = Math.floor(diff % 3600000 / 60000);
-    var s = Math.floor(diff % 60000 / 1000);
-    var qa = function(u){ return root.querySelector('[data-u="'+u+'"]'); };
-    qa('d').textContent = String(d).padStart(2,'0');
-    qa('h').textContent = String(h).padStart(2,'0');
-    qa('m').textContent = String(m).padStart(2,'0');
-    qa('s').textContent = String(s).padStart(2,'0');
-  }
-  tick();
-  setInterval(tick, 1000);
-})();
+  // Wire dynamic sections to data.js content.
+  // The event card auto-advances to the next event when its countdown expires.
+  RSPBA_RENDER.eventCard(document.getElementById('event-card'));
+  RSPBA_RENDER.homeDiary(document.getElementById('home-diary'));
+  RSPBA_RENDER.homeNews(document.getElementById('home-news'));
 </script>
 </body>
 </html>

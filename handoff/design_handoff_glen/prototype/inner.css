@@ -101,9 +101,9 @@
   border-radius: 50%;
 }
 
-/* ─────────────────────── CONTESTS PAGE FIXTURES ─────────────────────── */
-.fixtures { padding: 24px 0 0; }
-.fixture {
+/* ─────────────────────── CONTESTS PAGE — CONTEST CARDS ─────────────────────── */
+.contest-list { padding: 24px 0 0; }
+.contest-card {
   display: grid;
   grid-template-columns: 140px 1fr 240px;
   gap: 40px;
@@ -111,16 +111,16 @@
   border-bottom: 1px solid var(--line);
   align-items: start;
 }
-.fixture:last-child { border-bottom: 0; }
-.fixture.past { opacity: .58; }
-.fixture.next {
+.contest-card:last-child { border-bottom: 0; }
+.contest-card.past { opacity: .58; }
+.contest-card.next {
   margin: 12px -24px;
   padding: 40px 24px;
   background: var(--paper);
   border: 1px solid var(--heather);
   border-radius: 6px;
 }
-.fixture.major {
+.contest-card.major {
   background: linear-gradient(180deg, var(--paper) 0%, transparent 100%);
   border-radius: 6px;
   padding: 28px 24px;
@@ -612,7 +612,7 @@
 @media (max-width: 1080px) {
   .page-head-inner { grid-template-columns: 1fr; gap: 32px; }
   .page-title { font-size: 52px; }
-  .fixture { grid-template-columns: 100px 1fr; }
+  .contest-card { grid-template-columns: 100px 1fr; }
   .fx-cta { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; }
   .tl-item { grid-template-columns: 80px 1fr; gap: 18px; }
   .tl-cta { grid-column: 1 / -1; }

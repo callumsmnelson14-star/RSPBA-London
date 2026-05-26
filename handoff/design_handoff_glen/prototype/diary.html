@@ -51,65 +51,10 @@
   <div class="container">
 
     <div class="diary-timeline">
-
-      <article class="tl-item past">
-        <header>
-          <span class="tl-d">19</span>
-          <span class="tl-m">April</span>
-        </header>
-        <div class="tl-body">
-          <h4>Miniband Contest · Past</h4>
-          <p>Quartets, mini-bands, solo piping and drumming · Gordon's School, Woking</p>
-        </div>
-        <a class="tl-cta" href="results.html#miniband">Results &rarr;</a>
-      </article>
-
-      <article class="tl-item past">
-        <header><span class="tl-d">17</span><span class="tl-m">May</span></header>
-        <div class="tl-body">
-          <h4>PM Jim McGinn Memorial · Past</h4>
-          <p>Wyton on the Hill, Huntingdon, Cambridgeshire</p>
-        </div>
-        <a class="tl-cta" href="results.html#jim-mcginn">Results &rarr;</a>
-      </article>
-
-      <article class="tl-item next" id="colchester">
-        <header><span class="tl-d">14</span><span class="tl-m">June</span></header>
-        <div class="tl-body">
-          <h4>Pipes in the Park, Colchester · Next</h4>
-          <p>Castle Park, Colchester · 10:00 BST · Solos, mini-bands, quartets, full band</p>
-        </div>
-        <a class="tl-cta" href="contests.html#fixture-colchester">Enter &rarr;</a>
-      </article>
-
-      <article class="tl-item" id="corby">
-        <header><span class="tl-d">12</span><span class="tl-m">July</span></header>
-        <div class="tl-body">
-          <h4>Corby Highland Gathering</h4>
-          <p>East Carlton Country Park, Corby · Full band, quartet, solo piping</p>
-        </div>
-        <a class="tl-cta" href="contests.html#corby">Entry forms &rarr;</a>
-      </article>
-
-      <article class="tl-item" id="chatsworth">
-        <header><span class="tl-d">5–6</span><span class="tl-m">Sep</span></header>
-        <div class="tl-body">
-          <h4>Chatsworth Country Fair · All England Championships</h4>
-          <p>Chatsworth House, Bakewell, Derbyshire · Major championship across two days</p>
-        </div>
-        <a class="tl-cta" href="contests.html#chatsworth">Entry forms &rarr;</a>
-      </article>
-
-      <article class="tl-item" id="agm">
-        <header><span class="tl-d">28</span><span class="tl-m">Nov</span></header>
-        <div class="tl-body">
-          <h4>Branch AGM 2026</h4>
-          <p>University of Bedfordshire, Luton Campus · 11:30 training workshop · 13:30 AGM</p>
-        </div>
-        <a class="tl-cta" href="about.html#agm">Details &rarr;</a>
-      </article>
-
+      <div id="diary-timeline"></div>
     </div>
+
+    
 
     <section class="info-block" id="majors">
       <div class="info-head">
@@ -164,5 +109,12 @@
   </div>
 </footer>
 
+
+<script src="data.js"></script>
+<script src="render.js"></script>
+<script src="admin.js"></script>
+<script>
+  RSPBA_RENDER.diaryTimeline(document.getElementById('diary-timeline'));
+</script>
 </body>
 </html>
