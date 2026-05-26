@@ -4,23 +4,69 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Branch News · RSPBA London</title>
-<meta name="description" content="Every Branch news bulletin from the most recent contest results back to the early 2020s.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/glen.css">
-<link rel="stylesheet" href="assets/css/inner.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="inner.css">
+<style>
+  .news-feed-page { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
+  .news-feed-page > li {
+    display: grid;
+    grid-template-columns: 140px 1fr auto;
+    gap: 32px;
+    padding: 28px 0 !important;
+    border-bottom: 1px solid var(--line) !important;
+    align-items: baseline;
+  }
+  .news-feed-page > li::before { display: none !important; }
+  .news-feed-page > li:last-child { border-bottom: 0 !important; }
+  .nf-date {
+    font: 600 13px/1 var(--mono);
+    letter-spacing: 0.06em;
+    color: var(--heather);
+  }
+  .nf-body h4 {
+    font: 500 22px/1.25 var(--serif);
+    margin: 0 0 6px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .nf-body p {
+    font: 400 14px/1.55 var(--sans) !important;
+    color: var(--ink-2);
+    margin: 0 !important;
+    max-width: 60ch;
+  }
+  .nf-cta {
+    font: 600 13px/1 var(--sans) !important;
+    color: var(--lichen) !important;
+    border-bottom: 0 !important;
+  }
+  .nf-tag {
+    display: inline-block;
+    font: 600 10px/1 var(--sans);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--lichen);
+    padding: 4px 8px;
+    border-radius: 3px;
+    margin-bottom: 6px;
+  }
+  .nf-tag.admin { background: var(--slate); }
+  .nf-tag.edu { background: var(--heather); }
+  .nf-tag.tribute { background: #7a3a4a; }
+</style>
 </head>
 <body class="inner-page">
 
 <header class="head">
-  <div class="head-inner">
-    <a class="brand" href="index.html">
-      <span class="rune" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="14" rx="4" ry="5" fill="#4a6e62"/><path d="M16 14 L13 9 M20 13 L20 7 M24 14 L27 9" stroke="#4a6e62" stroke-width="1.4" stroke-linecap="round"/><path d="M18 19 Q20 24 22 19" fill="#9c6b3c"/><path d="M20 20 L20 34" stroke="#4a6e62" stroke-width="1.4" stroke-linecap="round"/><path d="M16 28 Q20 26 24 28" stroke="#4a6e62" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg></span>
+  <div class="container head-inner">
+    <a class="brand" href="home.html">
+      <span class="rune"><svg viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="14" rx="4" ry="5" fill="#4a6e62"/><path d="M16 14 L13 9 M20 13 L20 7 M24 14 L27 9" stroke="#4a6e62" stroke-width="1.4" stroke-linecap="round"/><path d="M18 19 Q20 24 22 19" fill="#9c6b3c"/><path d="M20 20 L20 34" stroke="#4a6e62" stroke-width="1.4" stroke-linecap="round"/><path d="M16 28 Q20 26 24 28" stroke="#4a6e62" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg></span>
       <div class="brand-text"><span class="b-name">RSPBA London</span><span class="b-tag">London &amp; South of England Branch</span></div>
     </a>
     <nav class="nav" aria-label="Primary">
-      <a href="index.html" class="active">News</a>
+      <a href="home.html" class="active">News</a>
       <a href="contests.html">Contests</a>
       <a href="results.html">Results</a>
       <a href="diary.html">Diary</a>
@@ -28,24 +74,21 @@
       <a href="learn.html">Learn</a>
       <a href="about.html">About</a>
     </nav>
-    <a class="cta-mini" href="bands.html"><span>Find a band</span><span class="arr" aria-hidden="true">→</span></a>
+    <a class="cta-mini" href="bands.html"><span>Find a band</span><span class="arr">→</span></a>
   </div>
 </header>
 
 <section class="page-head">
   <div class="container">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="index.html">Home</a> <span aria-hidden="true">/</span>
-      <span class="current">All bulletins</span>
-    </nav>
+    <nav class="breadcrumb"><a href="home.html">Home</a> <span>/</span> <span class="current">All bulletins</span></nav>
     <div class="page-head-inner">
       <div>
-        <span class="kicker"><span class="thistle-dot" aria-hidden="true"></span>News Archive</span>
+        <span class="kicker"><span class="thistle-dot"></span>News Archive</span>
         <h1 class="page-title">Branch <em>news</em>.</h1>
         <p class="page-lede">Every Branch bulletin, from the most recent contest results back to the indoor mini-band contests of the early 2020s. Filter by year or topic.</p>
       </div>
-      <aside class="quick-actions" aria-label="Quick actions">
-        <a class="btn btn-primary" href="index.html">Back to homepage →</a>
+      <aside class="quick-actions">
+        <a class="btn btn-primary" href="home.html">Back to homepage &rarr;</a>
         <a class="btn btn-text" href="https://www.facebook.com/groups/RSPBA.London/" target="_blank" rel="noopener">Subscribe via Facebook ↗</a>
       </aside>
     </div>
@@ -63,7 +106,7 @@
           <h4>PM Jim McGinn Memorial Contest results published</h4>
           <p>Mark sheets and adjudicator critiques from the contest held at Wyton-on-the-Hill, Huntingdon on 17 May 2026 are now available.</p>
         </div>
-        <a class="nf-cta" href="results.html#jim-mcginn">Results →</a>
+        <a class="nf-cta" href="results.html#jim-mcginn">Results &rarr;</a>
       </li>
 
       <li>
@@ -73,7 +116,7 @@
           <h4>Updated Branch Local Rules &amp; CIO Model available</h4>
           <p>The Branch governance documents have been refreshed for the 2026 season. Download from the Documents page.</p>
         </div>
-        <a class="nf-cta" href="about.html#documents">Documents →</a>
+        <a class="nf-cta" href="about.html#documents">Documents &rarr;</a>
       </li>
 
       <li>
@@ -83,7 +126,7 @@
           <h4>Miniband Contest results · Gordon's School, Woking</h4>
           <p>Results from the indoor mini-band and solo contests held on 19 April 2026 are now published.</p>
         </div>
-        <a class="nf-cta" href="results.html#miniband">Results →</a>
+        <a class="nf-cta" href="results.html#miniband">Results &rarr;</a>
       </li>
 
       <li>
@@ -93,7 +136,7 @@
           <h4>Branch AGM 2025 documents archived</h4>
           <p>Minutes from the 2023, 2024 and 2025 AGMs are available to download.</p>
         </div>
-        <a class="nf-cta" href="about.html#agm">AGM archive →</a>
+        <a class="nf-cta" href="about.html#agm">AGM archive &rarr;</a>
       </li>
 
       <li>
@@ -103,7 +146,7 @@
           <h4>Sign up · SQA-accredited Piping &amp; Drumming Qualifications</h4>
           <p>Registration open with Cliff Hall, Branch Education Officer, for the 28 March 2026 exam window.</p>
         </div>
-        <a class="nf-cta" href="learn.html#sqa">Find out more →</a>
+        <a class="nf-cta" href="learn.html#sqa">Find out more &rarr;</a>
       </li>
 
       <li>
@@ -113,7 +156,7 @@
           <h4>RSPBA subscriptions due end November</h4>
           <p>Reminder to all bands that 2026 subscriptions are due by 30 November 2025. Late penalties apply thereafter.</p>
         </div>
-        <a class="nf-cta" href="about.html#documents">Subscribe →</a>
+        <a class="nf-cta" href="about.html#documents">Subscribe &rarr;</a>
       </li>
 
       <li>
@@ -133,7 +176,7 @@
           <h4>Corby Highland Gathering 2025 results</h4>
           <p>Mark sheets from the Corby Highland Gathering contest are now published.</p>
         </div>
-        <a class="nf-cta" href="results.html#archive-2025">Results →</a>
+        <a class="nf-cta" href="results.html#archive-2025">Results &rarr;</a>
       </li>
 
       <li>
@@ -143,7 +186,7 @@
           <h4>Pipes in the Park, Colchester 2025 results</h4>
           <p>Mark sheets from the Colchester contest held on 15 June 2025 are available.</p>
         </div>
-        <a class="nf-cta" href="results.html#archive-2025">Results →</a>
+        <a class="nf-cta" href="results.html#archive-2025">Results &rarr;</a>
       </li>
 
       <li>
@@ -153,7 +196,7 @@
           <h4>PM Jim McGinn 2025 results</h4>
           <p>Results from the PM Jim McGinn Memorial Contest are now published.</p>
         </div>
-        <a class="nf-cta" href="results.html#archive-2025">Results →</a>
+        <a class="nf-cta" href="results.html#archive-2025">Results &rarr;</a>
       </li>
 
       <li>
@@ -163,7 +206,7 @@
           <h4>Maj Gen David McDowall CBE · RSPBA President</h4>
           <p>The Branch was deeply saddened to record the passing of RSPBA President Maj Gen David McDowall CBE in April 2025.</p>
         </div>
-        <a class="nf-cta" href="about.html#history">Tribute →</a>
+        <a class="nf-cta" href="about.html#history">Tribute &rarr;</a>
       </li>
 
       <li>
@@ -173,7 +216,7 @@
           <h4>Adult Amateur Solo Piping · CLASP English League launches</h4>
           <p>The Branch launches the CLASP English League for adult amateur solo pipers in 2025 — a graded pathway from Grade 4 chanter contests to Grade 1 piobaireachd.</p>
         </div>
-        <a class="nf-cta" href="learn.html#clasp">Find out more →</a>
+        <a class="nf-cta" href="learn.html#clasp">Find out more &rarr;</a>
       </li>
 
       <li>
@@ -183,7 +226,7 @@
           <h4>Walter MacGregor · Branch President</h4>
           <p>The Branch was deeply saddened to record the passing of long-serving Branch President Walter MacGregor on 27 November 2024.</p>
         </div>
-        <a class="nf-cta" href="about.html#history">Tribute →</a>
+        <a class="nf-cta" href="about.html#history">Tribute &rarr;</a>
       </li>
 
       <li>
@@ -193,7 +236,7 @@
           <h4>Formal music qualifications for pipers &amp; drummers</h4>
           <p>An overview of the Branch's tuition pathway via the SQA / PDQB framework is now available.</p>
         </div>
-        <a class="nf-cta" href="learn.html#sqa">Find out more →</a>
+        <a class="nf-cta" href="learn.html#sqa">Find out more &rarr;</a>
       </li>
 
       <li>
@@ -213,7 +256,7 @@
           <h4>Chatsworth Country Fair (English Championships) 2024 results</h4>
           <p>Mark sheets from the All-England Championships at Chatsworth on 31 August / 01 September 2024 are now published.</p>
         </div>
-        <a class="nf-cta" href="results.html#archive-older">Results →</a>
+        <a class="nf-cta" href="results.html#archive-older">Results &rarr;</a>
       </li>
 
       <li>
@@ -223,7 +266,7 @@
           <h4>Older bulletins available on request</h4>
           <p>Branch bulletins from 2018 through 2023 are archived; contact the Webmaster or Branch Secretary for copies of any specific bulletin.</p>
         </div>
-        <a class="nf-cta" href="about.html#contact">Contact →</a>
+        <a class="nf-cta" href="about.html#contact">Contact &rarr;</a>
       </li>
 
     </ul>
@@ -234,7 +277,7 @@
   <div class="container">
     <div class="foot-top">
       <div class="foot-brand">
-        <span class="rune" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="14" rx="4" ry="5" fill="#dde0d8"/><path d="M16 14 L13 9 M20 13 L20 7 M24 14 L27 9" stroke="#dde0d8" stroke-width="1.4" stroke-linecap="round"/><path d="M18 19 Q20 24 22 19" fill="#c5a878"/><path d="M20 20 L20 34" stroke="#dde0d8" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+        <span class="rune"><svg viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="14" rx="4" ry="5" fill="#dde0d8"/><path d="M16 14 L13 9 M20 13 L20 7 M24 14 L27 9" stroke="#dde0d8" stroke-width="1.4" stroke-linecap="round"/><path d="M18 19 Q20 24 22 19" fill="#c5a878"/><path d="M20 20 L20 34" stroke="#dde0d8" stroke-width="1.4" stroke-linecap="round"/></svg></span>
         <p class="foot-name">The Royal Scottish<br>Pipe Band Association</p>
         <p class="foot-sub">London &amp; the South of England Branch · Founded 1965 · Charity 1183503</p>
       </div>
