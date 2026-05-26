@@ -18,14 +18,50 @@ The prototype uses inline React + Babel transpilation for convenience; that's an
 design_handoff_glen/
 ├── README.md                     ← this file
 └── prototype/
-    ├── home.html                 ← Glen homepage prototype
-    ├── style.css                 ← all Glen styles + tokens
-    ├── tweaks.jsx                ← in-design knob panel (palette, type, layout)
-    ├── tweaks-panel.jsx          ← reusable tweak control shell (helper)
-    └── image-slot.js             ← drag-and-drop image placeholder web component
+    ├── home.html                 ← Glen homepage (news landing)
+    ├── contests.html             ← Branch Contests 2026 (5 real fixtures + draws)
+    ├── results.html              ← Contest Results (2026 + 2025 archive + older)
+    ├── diary.html                ← Full 2026 calendar incl. Major Championships
+    ├── bands.html                ← 19 member bands directory, by grade (no photos)
+    ├── learn.html                ← SQA, CLASP, training days, Summer School
+    ├── news.html                 ← Full news archive
+    ├── about.html                ← Hub: history / officials / safeguarding / documents / AGM / contact
+    ├── placeholder.html          ← PDF placeholder page (every doc link points here)
+    ├── style.css                 ← base tokens + homepage components
+    ├── inner.css                 ← inner-page components (page-head, fixtures, timeline, tables, etc.)
+    ├── tweaks.jsx                ← in-design knob panel (homepage only)
+    ├── tweaks-panel.jsx          ← reusable tweak control shell
+    └── image-slot.js             ← drag-and-drop image placeholder component
 ```
 
 To preview locally: open `prototype/home.html` directly in a browser, or serve `prototype/` over `python3 -m http.server` and visit `http://localhost:8000/home.html`.
+
+## Changes since the first handoff
+
+This revision (v2) addresses the feedback from the first review:
+
+- **Band photos removed** — the homepage bands section is now a text-only directory listing bands by grade. The new `bands.html` page shows all 19 member bands as cards with no images.
+- **“2026 Branch fixtures” → “2026 Events”** — homepage diary heading updated.
+- **Inner pages added** for every primary nav item: `contests.html`, `results.html`, `diary.html`, `bands.html`, `learn.html`, plus `news.html` (archive) and `about.html` (hub for history/officials/safeguarding/contact/documents/AGM).
+- **All links resolve.** Every `href` in the prototype points to either a real page in the bundle, an external URL (Facebook group, RSPBA HQ, band websites), an email link, or the shared `placeholder.html` page for any document/PDF the redesign references but doesn’t have the original asset for.
+- **Real band roster.** The bands directory uses the actual 19 branch member bands and their grades, lifted from the existing site (City of London, Macánta, Scots Guards Association South, City of Plymouth, Ratae, Seaforth Highlanders, Laidlaw Memorial, Wolverhampton, Cambridgeshire Caledonian, Glen Duart, Milton Keynes &amp; District, Reading Scottish, The Standard Triumph, Stow Caledonian, Suffolk Glenmoriston, Gordon's School, Blackwater Thistle, Hampshire Caledonian, Oatlands Park).
+- **Real 2026 contests.** The contests page reflects the actual 5 fixtures: Miniband Contest (19 Apr), PM Jim McGinn (17 May), Pipes in the Park Colchester (14 Jun), Corby Highland Gathering (12 Jul), Chatsworth Country Fair (5–6 Sep).
+
+## How the placeholder PDF page works
+
+Any link in the prototype that would have pointed at a real document or PDF (entry forms, draws, AGM minutes, governance documents, results CSVs, etc.) instead points at:
+
+```
+placeholder.html?doc=Name+of+Document
+```
+
+The placeholder page renders a faux-PDF-viewer mockup with a watermarked page that reads “Placeholder document — Linked from: {Name of Document}”. **In production, swap each of these `href`s for the real document URL** once the assets are available.
+
+A full list of every placeholder reference can be extracted from the source with a grep:
+
+```bash
+grep -rn 'placeholder.html?doc=' prototype/
+```
 
 ---
 
@@ -322,12 +358,14 @@ The exact news headlines, diary entries, results, and footer link labels are in 
 
 ## Recommended approach
 
-1. **Set up the design token layer** first (CSS variables, theme object, or whatever your stack uses)
-2. **Type system**: import the three Google fonts; define a type scale matching the table above
-3. **Build the primitives**: Button (primary/text), Card, Tag/Kicker, Section header
-4. **Build the specialised components**: Event card with countdown, Diary card, Result card, Pathway step
-5. **Compose the page sections**: header → hero → news → diary → pathway → results → bands → cta → footer
-6. **Wire data**: news items, diary, results, bands all want to live in CMS / data layer, not hard-coded
+1. **Set up the design token layer** first (CSS variables, theme object, or whatever your stack uses). The `:root` block at the top of `style.css` is the source of truth.
+2. **Type system**: import the three Google fonts; define a type scale matching the table above.
+3. **Build the primitives**: Button (primary/text), Card, Tag/Kicker, Section header.
+4. **Build the page shell**: sticky header, footer (used identically on every page).
+5. **Build the inner-page shell**: breadcrumb + page-head + quick-actions aside (used identically on every inner page).
+6. **Build the specialised components**: Event card with countdown, Diary card, Result card / table, Pathway step, Fixture card, Timeline item, Band card, Doc list, Officials list, Placeholder PDF page.
+7. **Compose the pages**: home → news → contests → results → diary → bands → learn → about.
+8. **Wire data**: news items, diary, results, bands all want to live in CMS / data layer, not hard-coded. The bands list, in particular, is naturally a single source of truth (used on homepage roster, bands directory, and result-card band names).
 
 If the codebase is React + Tailwind, the token names above translate cleanly to `tailwind.config.js` `theme.extend.colors`. If it's plain CSS, copy the `:root` block from `style.css` directly.
 

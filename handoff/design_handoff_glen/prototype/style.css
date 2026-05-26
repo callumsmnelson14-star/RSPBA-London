@@ -620,6 +620,41 @@ img { max-width: 100%; display: block; }
   color: var(--muted);
 }
 
+/* ─────────────────────── BAND ROSTER (text directory) ─────────────────────── */
+.band-roster {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 36px 28px;
+}
+.roster-col { display: flex; flex-direction: column; gap: 10px; }
+.roster-grade {
+  font: 600 11px/1 var(--sans);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--heather);
+  margin: 0 0 4px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.roster-grade-tight { margin-top: 18px; }
+.roster-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.roster-col li {
+  font: 500 16px/1.3 var(--serif);
+  color: var(--ink);
+}
+.roster-col li small {
+  font: 400 12px/1 var(--sans);
+  color: var(--muted);
+  margin-left: 4px;
+}
+.roster-col li a {
+  color: var(--ink);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+  transition: color .15s, border-color .15s;
+}
+.roster-col li a:hover { color: var(--lichen); border-bottom-color: var(--lichen); }
+
 /* ─────────────────────── CTA ─────────────────────── */
 .cta {
   padding: 120px 0;
