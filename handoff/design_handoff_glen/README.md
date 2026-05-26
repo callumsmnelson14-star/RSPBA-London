@@ -18,17 +18,21 @@ The prototype uses inline React + Babel transpilation for convenience; that's an
 design_handoff_glen/
 ├── README.md                     ← this file
 └── prototype/
-    ├── home.html                 ← Glen homepage (news landing)
-    ├── contests.html             ← Branch Contests 2026 (5 real fixtures + draws)
-    ├── results.html              ← Contest Results (2026 + 2025 archive + older)
+    ├── home.html                 ← Glen homepage (news landing + auto-advancing countdown)
+    ├── contests.html             ← Branch Contests 2026 (rendered from data.js)
+    ├── results.html              ← Contest Results (links to print sheets)
+    ├── results-print.html        ← Print-PDF template with top-grade-winner cover
     ├── diary.html                ← Full 2026 calendar incl. Major Championships
     ├── bands.html                ← 19 member bands directory, by grade (no photos)
     ├── learn.html                ← SQA, CLASP, training days, Summer School
-    ├── news.html                 ← Full news archive
+    ├── news.html                 ← Full news archive (rendered from data.js)
     ├── about.html                ← Hub: history / officials / safeguarding / documents / AGM / contact
     ├── placeholder.html          ← PDF placeholder page (every doc link points here)
     ├── style.css                 ← base tokens + homepage components
-    ├── inner.css                 ← inner-page components (page-head, fixtures, timeline, tables, etc.)
+    ├── inner.css                 ← inner-page components (page-head, contest-card, timeline, tables)
+    ├── data.js                   ← ★ canonical content layer (events, results, news)
+    ├── render.js                 ← ★ per-section renderers reading from data.js
+    ├── admin.js                  ← ★ hidden in-page admin panel
     ├── tweaks.jsx                ← in-design knob panel (homepage only)
     ├── tweaks-panel.jsx          ← reusable tweak control shell
     └── image-slot.js             ← drag-and-drop image placeholder component
@@ -36,7 +40,76 @@ design_handoff_glen/
 
 To preview locally: open `prototype/home.html` directly in a browser, or serve `prototype/` over `python3 -m http.server` and visit `http://localhost:8000/home.html`.
 
-## Changes since the first handoff
+## Changes in v3 — shared data layer, auto-advancing countdown, admin, print-PDF
+
+This revision (v3) adds the four features requested after v2:
+
+### 1 · Shared content layer (`data.js`)
+
+A single `data.js` file is now the canonical source of every event, news bulletin and contest result. Every page reads from `window.RSPBA_DATA`. Editing the array in one place updates the homepage event card, the homepage diary, the homepage news cards, the full contest list, the diary timeline, the news archive — and the print-PDF results sheet — all together.
+
+Shape (abridged):
+
+```js
+window.RSPBA_DATA = {
+  events:  [ { id, date, name, location, tier, category, grades, description, entryForm, resultsAnchor }, … ],
+  results: [ { eventId, date, adjudicators, grades: [{ name, gradeRank, placings: [...] }] }, … ],
+  news:    [ { id, date, tag, title, summary, link: { label, url } }, … ]
+};
+```
+
+A second file `render.js` exposes `RSPBA_RENDER.eventCard(el)`, `.homeDiary(el)`, `.homeNews(el)`, `.contestList(el)`, `.diaryTimeline(el)`, `.newsFeed(el)`. Pages call only the renderers they need.
+
+**For the developer:** in production, swap `data.js` for content sourced from a CMS or content-collection. The shape is intentionally CMS-friendly. The renderers in `render.js` can be replaced with framework templates that take the same shape.
+
+### 2 · Auto-advancing countdown
+
+The homepage floating event card finds the next future event in `RSPBA_DATA.events` and counts down to it. The instant that event's date passes (or sooner, if you reload the page), the card re-paints with the next event after it. No manual updates required at end of season.
+
+Implementation: `RSPBA.nextEvent()` filters events by date and returns the first future one; the renderer ticks every second and re-paints whenever the countdown hits zero.
+
+### 3 · Hidden admin panel
+
+Reachable two ways:
+
+| Method | How |
+|---|---|
+| URL parameter | append `?admin=1` to any page (e.g. `/home.html?admin=1`) |
+| Keyboard | press **Ctrl + Shift + A** (or Cmd + Shift + A on Mac) |
+
+The panel slides in from the right and offers three tabs:
+- **Events / Contests** — form-based edit of every contest (date, name, location, address, tier, description, entry-form URL); add new contests or delete existing ones.
+- **News bulletins** — same for news; tag selector, date picker, link label + URL.
+- **JSON view** — raw paste-in/copy-out for backup or full restore.
+
+Edits persist to `localStorage` and are applied across all pages while the admin is using them. A "Download data.js" button exports the modified data as a ready-to-commit file.
+
+**Security note for the developer:** activating by URL is fine for prototype demos and for handing off, but is **NOT production security** — anyone reaching the page can edit. In production, gate the admin behind real auth (Auth0, Clerk, NextAuth, etc.) and persist edits to a backend store, not localStorage.
+
+A small "Admin" pill in the bottom-left of every page is the entry point when no shortcut is used; you can hide it in production by removing the call to `renderLauncher()` in `admin.js`.
+
+### 4 · Print-PDF results sheet
+
+The `results-print.html` page is a print-optimised results template. Hitting **Print results sheet ↗** on any block in `results.html` opens it in a new tab with `?contest=<event-id>`. The template:
+
+- Reads the event + results from `data.js`
+- Renders an A4 cover page with the **top-grade winner** (the band that won the highest grade competing — Grade 1 beats Grade 2 etc.) prominently featured
+- Renders one mark-sheet page per grade after the cover
+- Hits browser print on demand — user saves as PDF via the OS print dialog
+- Includes a print stylesheet (`@page A4`, hidden toolbar, no shadows) so the saved PDF is clean
+
+To wire a new contest's results to the print sheet:
+1. Add a `results` entry in `data.js` with `eventId` matching an event in `RSPBA_DATA.events`
+2. Order each grade's `placings` array winner-first (and set `gradeRank` lower-is-better)
+3. Add a "Print results sheet ↗" link on results.html pointing at `results-print.html?contest=<event-id>`
+
+### 5 · Fixture → Contest
+
+The word "fixture" has been replaced with "contest" everywhere in the visible copy and in CSS class names (`.fixture` → `.contest-card`, `.fixtures` → `.contest-list`).
+
+---
+
+## Changes in v2 — full site
 
 This revision (v2) addresses the feedback from the first review:
 

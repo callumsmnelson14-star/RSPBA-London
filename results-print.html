@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Results Sheet · RSPBA London</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/glen.css">
+<style>
+  /* ────────── PRINT SHEET (A4) ────────── */
+  :root {
+    --sheet-w: 794px;   /* A4 @ 96 DPI */
+    --sheet-h: 1123px;
+  }
+  html, body { background: #d6d2c8; }
+  body { padding: 40px 0; }
+
+  .ps-toolbar {
+    position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 100;
+    display: flex; gap: 8px; align-items: center;
+    background: var(--ink); color: var(--paper);
+    padding: 8px 8px 8px 18px;
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    font: 500 13px/1 var(--sans);
+  }
+  .ps-toolbar .ps-label { color: rgba(255,255,255,.8); letter-spacing: 0.04em; }
+  .ps-toolbar button, .ps-toolbar a {
+    font: 600 12px/1 var(--sans);
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 0; cursor: pointer;
+    background: var(--paper);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .ps-toolbar button:hover, .ps-toolbar a:hover { background: #e5b87f; }
+  .ps-toolbar .ps-ghost {
+    background: transparent;
+    color: rgba(255,255,255,.85);
+    border: 1px solid rgba(255,255,255,.25);
+  }
+  .ps-toolbar .ps-ghost:hover { background: rgba(255,255,255,.05); color: var(--paper); }
+
+  .ps-sheet {
+    width: var(--sheet-w);
+    min-height: var(--sheet-h);
+    margin: 0 auto 24px;
+    background: var(--paper);
+    box-shadow: 0 20px 60px -20px rgba(30,38,48,.35), 0 0 0 1px rgba(0,0,0,.06);
+    padding: 56px 56px 64px;
+    color: var(--ink);
+    font: 14px/1.55 var(--sans);
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+  .ps-sheet:last-child { page-break-after: auto; }
+
+  /* ────────── COVER PAGE ────────── */
+  .ps-cover { display: flex; flex-direction: column; min-height: calc(var(--sheet-h) - 120px); position: relative; }
+  .ps-cover .ps-watermark {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(74,110,98,.04) 100%);
+    pointer-events: none;
+  }
+  .ps-cover header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding-bottom: 28px;
+    border-bottom: 2px solid var(--lichen);
+  }
+  .ps-cover .ps-crest { width: 48px; height: 48px; flex: none; }
+  .ps-cover .ps-org {
+    text-align: right;
+    font: 500 11px/1.4 var(--sans);
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+  .ps-cover .ps-org strong {
+    display: block;
+    font: 500 14px/1.2 var(--serif);
+    color: var(--ink);
+    letter-spacing: 0;
+    margin-bottom: 2px;
+  }
+  .ps-cover .ps-meta {
+    margin-top: 28px;
+    display: flex; gap: 32px;
+    font: 500 11px/1 var(--mono);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--heather);
+  }
+  .ps-cover .ps-meta b {
+    display: block;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
+  .ps-cover .ps-meta span {
+    color: var(--ink); font-family: var(--serif);
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .ps-cover h1 {
+    margin: 48px 0 12px;
+    font: 500 56px/1.05 var(--serif);
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    text-wrap: pretty;
+  }
+  .ps-cover .ps-subtitle {
+    font: italic 500 22px/1.3 var(--serif);
+    color: var(--muted);
+    margin: 0 0 56px;
+    text-wrap: pretty;
+  }
+
+  /* THE WINNER BLOCK — the heart of the cover */
+  .ps-winner {
+    margin: auto 0 64px;
+    padding: 36px 40px 40px;
+    background: linear-gradient(135deg, var(--paper) 0%, #f4ede1 100%);
+    border: 1px solid var(--heather);
+    border-radius: 6px;
+    position: relative;
+  }
+  .ps-winner::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; right: -1px; height: 6px;
+    background: linear-gradient(90deg, var(--heather) 0%, #c89968 100%);
+    border-radius: 6px 6px 0 0;
+  }
+  .ps-winner .ps-w-kicker {
+    display: inline-block;
+    font: 600 10px/1 var(--mono);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--heather);
+    padding: 6px 12px;
+    border-radius: 3px;
+    margin-bottom: 18px;
+  }
+  .ps-winner .ps-w-grade {
+    font: 500 14px/1 var(--mono);
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .ps-winner h2 {
+    font: 500 48px/1 var(--serif);
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+    text-wrap: pretty;
+  }
+  .ps-winner .ps-w-score {
+    display: flex; gap: 24px; align-items: baseline;
+    font: 500 14px/1 var(--mono);
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .ps-winner .ps-w-score b {
+    font: 600 28px/1 var(--serif);
+    color: var(--lichen);
+    font-variant-numeric: tabular-nums;
+  }
+  .ps-winner .ps-w-score span {
+    display: flex; flex-direction: column; gap: 4px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .ps-cover footer {
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between;
+    font: 500 10px/1 var(--mono);
+    color: var(--muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  /* ────────── MARK SHEET PAGES ────────── */
+  .ps-mark header {
+    padding-bottom: 18px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .ps-mark .ps-mark-grade {
+    font: 500 36px/1 var(--serif);
+    color: var(--ink);
+    letter-spacing: -0.015em;
+  }
+  .ps-mark .ps-mark-context {
+    text-align: right;
+    font: 500 11px/1.4 var(--mono);
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .ps-mark .ps-mark-context strong {
+    display: block;
+    font: 500 14px/1.2 var(--serif);
+    color: var(--ink);
+    letter-spacing: 0;
+    margin-bottom: 4px;
+  }
+
+  .ps-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .ps-table th {
+    text-align: left;
+    font: 600 10px/1 var(--mono);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .ps-table .th-pos { width: 56px; text-align: center; }
+  .ps-table th:not(.th-pos):not(.th-band) { text-align: right; }
+  .ps-table td {
+    padding: 16px 10px;
+    font: 500 14px/1.3 var(--sans);
+    color: var(--ink-2);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .ps-table td:not(.ps-pos):not(.ps-band) { text-align: right; }
+  .ps-table tbody tr:last-child td { border-bottom: 0; }
+  .ps-pos { text-align: center; font: 500 22px/1 var(--serif); color: var(--muted); }
+  .ps-table tr:first-child .ps-pos { color: var(--heather); }
+  .ps-band { font: 500 15px/1.2 var(--serif); color: var(--ink) !important; }
+  .ps-total { font: 600 15px/1 var(--serif) !important; color: var(--lichen) !important; }
+  .ps-mark + .ps-mark { margin-top: 0; }
+  .ps-foot {
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--line);
+    display: flex; justify-content: space-between;
+    font: 500 11px/1.4 var(--mono);
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* ────────── PRINT MEDIA ────────── */
+  @media print {
+    html, body { background: white; }
+    .ps-toolbar { display: none !important; }
+    body { padding: 0; }
+    .ps-sheet {
+      box-shadow: none !important;
+      margin: 0 auto !important;
+      width: 100% !important;
+      min-height: auto;
+      padding: 36px 40px;
+    }
+    @page { size: A4; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ps-toolbar">
+  <span class="ps-label">Results sheet</span>
+  <button onclick="window.print()">Print / Save as PDF ↓</button>
+  <a href="results.html" class="ps-ghost">← Back to results</a>
+</div>
+
+<!-- COVER PAGE -->
+<div class="ps-sheet ps-cover">
+  <div class="ps-watermark"></div>
+
+  <header>
+    <svg class="ps-crest" viewBox="0 0 40 40" fill="none">
+      <ellipse cx="20" cy="14" rx="4" ry="5" fill="#4a6e62"/>
+      <path d="M16 14 L13 9 M20 13 L20 7 M24 14 L27 9" stroke="#4a6e62" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M18 19 Q20 24 22 19" fill="#9c6b3c"/>
+      <path d="M20 20 L20 34" stroke="#4a6e62" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M16 28 Q20 26 24 28" stroke="#4a6e62" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div class="ps-org">
+      <strong>The Royal Scottish Pipe Band Association</strong>
+      London &amp; the South of England Branch<br>
+      Founded 1965 · Charity reg. 1183503
+    </div>
+  </header>
+
+  <div class="ps-meta">
+    <div><b>Date</b><span id="ps-date">—</span></div>
+    <div><b>Location</b><span id="ps-loc">—</span></div>
+    <div><b>Adjudicators</b><span id="ps-adj">—</span></div>
+  </div>
+
+  <h1 id="ps-title">Contest Results</h1>
+  <p class="ps-subtitle" id="ps-subtitle">Mark sheets &amp; placings, by grade</p>
+
+  <div class="ps-winner" id="ps-winner">
+    <span class="ps-w-kicker">Top-grade winner</span>
+    <div class="ps-w-grade" id="ps-winner-grade">Grade —</div>
+    <h2 id="ps-winner-band">—</h2>
+    <div class="ps-w-score" id="ps-winner-score"></div>
+  </div>
+
+  <footer>
+    <span>Issued by the Branch Secretary</span>
+    <span id="ps-issued">Generated <span id="ps-gen-date">—</span></span>
+  </footer>
+</div>
+
+<!-- MARK-SHEET PAGES — one per grade -->
+<div id="ps-mark-pages"></div>
+
+<script src="assets/js/data.js"></script>
+<script>
+(function () {
+  const params = new URLSearchParams(location.search);
+  const eventId = params.get('contest') || (RSPBA_DATA.results[0] && RSPBA_DATA.results[0].eventId);
+
+  const event = RSPBA_DATA.events.find(e => e.id === eventId);
+  const results = RSPBA.resultsFor(eventId);
+
+  if (!event || !results) {
+    document.querySelector('.ps-cover').innerHTML =
+      '<header style="padding-bottom:28px;border-bottom:2px solid var(--lichen);"><h1>Results not found</h1></header>' +
+      '<p style="margin-top:32px;">No results were found for contest <code>' + (eventId || 'unspecified') + '</code>.</p>' +
+      '<p><a href="results.html">← Back to results</a></p>';
+    return;
+  }
+
+  // ─── Cover ───
+  document.title = event.shortName + ' · Results Sheet';
+  document.getElementById('ps-title').textContent = event.shortName || event.name;
+  document.getElementById('ps-subtitle').textContent = 'Mark sheets and placings, by grade';
+  document.getElementById('ps-date').textContent = RSPBA.formatDate(results.date || event.date, 'long');
+  document.getElementById('ps-loc').textContent = event.location || '—';
+
+  const adj = results.adjudicators || {};
+  const adjStr = Object.entries(adj)
+    .map(([role, name]) => name + ' (' + role.charAt(0).toUpperCase() + ')')
+    .join(', ');
+  document.getElementById('ps-adj').textContent = adjStr || '—';
+  document.getElementById('ps-gen-date').textContent = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+  // Top-grade winner (highest grade = lowest gradeRank)
+  const top = RSPBA.topGradeWinner(eventId);
+  if (top) {
+    document.getElementById('ps-winner-grade').textContent = top.grade;
+    document.getElementById('ps-winner-band').textContent = top.band;
+    const p = top.placing;
+    const parts = [];
+    if (p.piping    != null) parts.push(['Piping', p.piping]);
+    if (p.drumming  != null) parts.push(['Drumming', p.drumming]);
+    if (p.music     != null) parts.push(['Music', p.music]);
+    if (p.execution != null) parts.push(['Execution', p.execution]);
+    if (p.ensemble  != null) parts.push(['Ensemble', p.ensemble]);
+    if (p.total     != null) parts.push(['Total', p.total]);
+    document.getElementById('ps-winner-score').innerHTML =
+      parts.map(([l, v]) => '<span><b>' + v + '</b>' + l + '</span>').join('');
+  } else {
+    document.getElementById('ps-winner').style.display = 'none';
+  }
+
+  // ─── Mark-sheet pages — one per grade, sorted top grade first ───
+  const root = document.getElementById('ps-mark-pages');
+  const gradesSorted = (results.grades || []).slice().sort((a, b) => (a.gradeRank || 99) - (b.gradeRank || 99));
+
+  gradesSorted.forEach(grade => {
+    const sheet = document.createElement('div');
+    sheet.className = 'ps-sheet ps-mark';
+
+    const sample = (grade.placings || [])[0] || {};
+    const cols = [];
+    if ('piping'    in sample) cols.push(['Piping',    'piping']);
+    if ('drumming'  in sample) cols.push(['Drumming',  'drumming']);
+    if ('music'     in sample) cols.push(['Music',     'music']);
+    if ('execution' in sample) cols.push(['Execution', 'execution']);
+    if ('ensemble'  in sample) cols.push(['Ensemble',  'ensemble']);
+
+    sheet.innerHTML = `
+      <header>
+        <div>
+          <span style="font: 600 10px/1 var(--mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--heather); display: block; margin-bottom: 8px;">Grade Mark Sheet</span>
+          <span class="ps-mark-grade">${grade.name}</span>
+        </div>
+        <div class="ps-mark-context">
+          <strong>${event.shortName}</strong>
+          ${RSPBA.formatDate(results.date || event.date, 'long')}<br>
+          ${event.location}
+        </div>
+      </header>
+
+      <table class="ps-table">
+        <thead>
+          <tr>
+            <th class="th-pos">Pos</th>
+            <th class="th-band">Band</th>
+            ${cols.map(c => '<th>' + c[0] + '</th>').join('')}
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${(grade.placings || []).map(p => `
+            <tr>
+              <td class="ps-pos">${p.pos}</td>
+              <td class="ps-band">${p.band}</td>
+              ${cols.map(c => '<td>' + (p[c[1]] != null ? p[c[1]] : '—') + '</td>').join('')}
+              <td class="ps-total">${p.total != null ? p.total : '—'}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+
+      <div class="ps-foot">
+        <span>${event.shortName} · ${grade.name}</span>
+        <span>RSPBA London &amp; SoE Branch</span>
+      </div>
+    `;
+    root.appendChild(sheet);
+  });
+
+})();
+</script>
+</body>
+</html>
