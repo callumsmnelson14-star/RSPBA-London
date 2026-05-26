@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RSPBA London · Glen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ───────────────────────────── HEADER ───────────────────────────── -->
+<header class="head">
+  <div class="container head-inner">
+    <a class="brand" href="home.html">
+      <span class="rune" aria-hidden="true">
+        <svg viewBox="0 0 40 40" fill="none">
+          <!-- thistle silhouette -->
+          <ellipse cx="20" cy="14" rx="4" ry="5" fill="#4a6e62"/>
+          <path d="M16 14 L13 9 M20 13 L20 7 M24 14 L27 9" stroke="#4a6e62" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M18 19 Q20 24 22 19" fill="#9c6b3c"/>
+          <path d="M20 20 L20 34" stroke="#4a6e62" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M16 28 Q20 26 24 28" stroke="#4a6e62" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <div class="brand-text">
+        <span class="b-name">RSPBA London</span>
+        <span class="b-tag">London &amp; South of England Branch</span>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="home.html" class="active">News</a>
+      <a href="contests.html">Contests</a>
+      <a href="results.html">Results</a>
+      <a href="diary.html">Diary</a>
+      <a href="bands.html">Bands</a>
+      <a href="learn.html">Learn</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <a class="cta-mini" href="bands.html">
+      <span>Find a band</span>
+      <span class="arr">→</span>
+    </a>
+  </div>
+</header>
+
+<!-- ───────────────────────────── HERO — split with photo ───────────────────────────── -->
+<section class="hero">
+  <div class="hero-layout">
+
+    <div class="hero-photo">
+      <image-slot id="hero-photo" shape="rect" placeholder="Massed bands on the green · ~960×900 landscape"></image-slot>
+
+      <!-- floating event card -->
+      <div class="event-card">
+        <div class="ec-row">
+          <span class="ec-month">June</span>
+          <span class="ec-day">14</span>
+          <span class="ec-year">2026</span>
+        </div>
+        <div class="ec-divider"></div>
+        <div class="ec-body">
+          <span class="ec-kicker">Next Branch Contest</span>
+          <h3 class="ec-title">Pipes in the Park</h3>
+          <p class="ec-loc">Castle Park, Colchester · 10:00 BST</p>
+          <div class="ec-countdown" id="countdown" data-target="2026-06-14T10:00:00+01:00">
+            <span><b data-u="d">19</b> days</span>
+            <span><b data-u="h">04</b> hrs</span>
+            <span><b data-u="m">22</b> min</span>
+            <span><b data-u="s">10</b> sec</span>
+          </div>
+          <a class="ec-cta" href="contests.html">View contest details →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-text">
+      <span class="kicker"><span class="thistle-dot"></span>2026 Season</span>
+      <h1 class="hero-title">
+        Pipe band music in <em>the south of England.</em>
+      </h1>
+      <p class="hero-lede">Nineteen member bands, eight branch fixtures, and a pathway from first chanter to championship circle. Founded in 1965 to grow the pipe-band tradition south of the Tweed — and we're still at it.</p>
+
+      <div class="hero-stats">
+        <div>
+          <span class="hs-n">19</span>
+          <span class="hs-l">Member bands</span>
+        </div>
+        <div>
+          <span class="hs-n">8</span>
+          <span class="hs-l">Branch fixtures</span>
+        </div>
+        <div>
+          <span class="hs-n">61</span>
+          <span class="hs-l">Years on</span>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="contests.html">2026 contests</a>
+        <a class="btn btn-text" href="learn.html">Learn the pipes →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- thin tartan stripe -->
+<div class="tartan-thread" aria-hidden="true"></div>
+
+<!-- ───────────────────────────── NEWS — editorial cards ───────────────────────────── -->
+<section class="news">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="kicker">From the Branch</span>
+        <h2 class="section-title">Recent news</h2>
+      </div>
+      <a class="section-link" href="news.html">All bulletins →</a>
+    </div>
+
+    <div class="news-grid">
+      <article class="card card-lg">
+        <image-slot id="news-1" shape="rounded" radius="3" placeholder="Contest action · 16:9"></image-slot>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">Results</span>
+            <time>18 May 2026</time>
+          </div>
+          <h3>PM Jim McGinn Memorial · Wyton-on-the-Hill, Huntingdon</h3>
+          <p>Nine bands competed in bright spring sunshine. Mark sheets, ensemble notes and adjudicator critiques are all published on the contest results page.</p>
+          <a href="results.html">View results →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <image-slot id="news-2" shape="rounded" radius="3" placeholder="Documents · 4:3"></image-slot>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag tag-admin">Admin</span>
+            <time>06 May 2026</time>
+          </div>
+          <h3>Updated Branch Local Rules &amp; CIO Model</h3>
+          <p>The Branch governance documents have been refreshed for the 2026 season and are available to download.</p>
+          <a href="about.html#documents">Download documents →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <image-slot id="news-3" shape="rounded" radius="3" placeholder="Miniband · 4:3"></image-slot>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">Results</span>
+            <time>28 April 2026</time>
+          </div>
+          <h3>Miniband Contest · Gordon's School, Woking</h3>
+          <p>Results from the indoor mini-band and solo contests held on 19 April are now published.</p>
+          <a href="results.html">View results →</a>
+        </div>
+      </article>
+
+      <article class="card card-quote">
+        <div class="card-body">
+          <span class="card-tag tag-edu">Education</span>
+          <h3 class="quote">SQA-accredited Piping &amp; Drumming Qualifications</h3>
+          <p>Sign up now to gain formal qualifications accredited by the Scottish Qualifications Authority. Register with Cliff Hall, Branch Education Officer.</p>
+          <a href="learn.html">Find out more →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────────── DIARY — calendar style ───────────────────────────── -->
+<section class="diary">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="kicker">Diary</span>
+        <h2 class="section-title">2026 Events</h2>
+      </div>
+      <a class="section-link" href="diary.html">Full diary →</a>
+    </div>
+
+    <div class="diary-grid">
+      <!-- Past -->
+      <article class="dx past">
+        <header>
+          <span class="dx-month">Apr</span>
+          <span class="dx-day">19</span>
+          <span class="dx-status">Past</span>
+        </header>
+        <h4>Miniband Contest</h4>
+        <span class="dx-loc">Gordon's School, Woking</span>
+        <a href="results.html">Results →</a>
+      </article>
+
+      <article class="dx past">
+        <header>
+          <span class="dx-month">May</span>
+          <span class="dx-day">17</span>
+          <span class="dx-status">Past</span>
+        </header>
+        <h4>PM Jim McGinn Memorial</h4>
+        <span class="dx-loc">Wyton-on-the-Hill</span>
+        <a href="results.html">Results →</a>
+      </article>
+
+      <article class="dx next">
+        <header>
+          <span class="dx-month">Jun</span>
+          <span class="dx-day">14</span>
+          <span class="dx-status highlight">Next</span>
+        </header>
+        <h4>Pipes in the Park</h4>
+        <span class="dx-loc">Castle Park, Colchester</span>
+        <a href="contests.html">Enter →</a>
+      </article>
+
+      <article class="dx">
+        <header>
+          <span class="dx-month">Jul</span>
+          <span class="dx-day">12</span>
+          <span class="dx-status">Highland</span>
+        </header>
+        <h4>Corby Highland Gathering</h4>
+        <span class="dx-loc">East Carlton Country Park</span>
+        <a href="diary.html#corby">Details →</a>
+      </article>
+
+      <article class="dx major">
+        <header>
+          <span class="dx-month">Sep</span>
+          <span class="dx-day">06</span>
+          <span class="dx-status highlight">Major</span>
+        </header>
+        <h4>English Championships</h4>
+        <span class="dx-loc">Chatsworth, Derbyshire</span>
+        <a href="diary.html#chatsworth">Details →</a>
+      </article>
+
+      <article class="dx">
+        <header>
+          <span class="dx-month">Nov</span>
+          <span class="dx-day">22</span>
+          <span class="dx-status">AGM</span>
+        </header>
+        <h4>Branch AGM 2026</h4>
+        <span class="dx-loc">Univ. of Bedfordshire, Luton</span>
+        <a href="diary.html#agm">Details →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────────── HOW IT WORKS / PATHWAY ───────────────────────────── -->
+<section class="pathway">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="kicker">Pathway</span>
+        <h2 class="section-title">From beginner to top piper.</h2>
+      </div>
+    </div>
+
+    <div class="pathway-grid">
+      <article class="pw">
+        <span class="pw-num">01</span>
+        <h4>Learn</h4>
+        <p>Free taster sessions with member bands. Practice chanter, snare and tenor lessons from accredited tutors.</p>
+        <a href="bands.html">Find a tutor →</a>
+      </article>
+      <article class="pw">
+        <span class="pw-num">02</span>
+        <h4>Qualify</h4>
+        <p>SQA-accredited certificates from beginner through to advanced via the Piping &amp; Drumming Qualifications Board.</p>
+        <a href="learn.html#pdqb">PDQB syllabus →</a>
+      </article>
+      <article class="pw">
+        <span class="pw-num">03</span>
+        <h4>Compete</h4>
+        <p>CLASP English League for adult amateur soloists, Branch contests in mini-band and full band across all grades.</p>
+        <a href="contests.html">Branch contests →</a>
+      </article>
+      <article class="pw">
+        <span class="pw-num">04</span>
+        <h4>Excel</h4>
+        <p>Championship circuit at Chatsworth and beyond. Annual RSPBA Summer School in Glasgow each July.</p>
+        <a href="diary.html#majors">Major championships →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────────── LATEST RESULTS ───────────────────────────── -->
+<section class="results">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="kicker">Mark Sheets</span>
+        <h2 class="section-title">Latest results</h2>
+      </div>
+      <a class="section-link" href="results.html">Full ledger →</a>
+    </div>
+
+    <div class="results-grid">
+      <article class="result-card">
+        <header>
+          <span class="r-event">PM Jim McGinn Memorial</span>
+          <span class="r-date">17 May 2026</span>
+        </header>
+        <ol>
+          <li><span>1</span><span>Grampian &amp; Sutherland Highlanders</span><em>3B</em></li>
+          <li><span>2</span><span>University of Bedfordshire</span><em>3B</em></li>
+          <li><span>3</span><span>City of London Caledonian</span><em>4A</em></li>
+          <li><span>4</span><span>Reading Scottish</span><em>4A</em></li>
+        </ol>
+      </article>
+      <article class="result-card">
+        <header>
+          <span class="r-event">Miniband Contest</span>
+          <span class="r-date">19 Apr 2026 · Woking</span>
+        </header>
+        <ol>
+          <li><span>1</span><span>Reading Scottish Mini A</span><em>MB1</em></li>
+          <li><span>2</span><span>Surrey Caledonian</span><em>MB1</em></li>
+          <li><span>3</span><span>Wessex Highland</span><em>MB2</em></li>
+          <li><span>4</span><span>Tilford Bach Junior</span><em>MB2</em></li>
+        </ol>
+      </article>
+      <article class="result-card">
+        <header>
+          <span class="r-event">English Championships '25</span>
+          <span class="r-date">07 Sep 2025 · Chatsworth</span>
+        </header>
+        <ol>
+          <li><span>1</span><span>Peoples Ford Boghall &amp; Bathgate</span><em>2</em></li>
+          <li><span>2</span><span>Mackenzie Caledonian</span><em>2</em></li>
+          <li><span>3</span><span>University of Bedfordshire</span><em>3A</em></li>
+          <li><span>4</span><span>City of Brighton &amp; Hove</span><em>3B</em></li>
+        </ol>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────────── BANDS — text directory ───────────────────────────── -->
+<section class="bands">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="kicker">Member Bands</span>
+        <h2 class="section-title">19 bands.<br><em>One branch.</em></h2>
+      </div>
+      <a class="section-link" href="bands.html">Full directory →</a>
+    </div>
+
+    <div class="band-roster">
+      <article class="roster-col">
+        <h3 class="roster-grade">Grade 3A</h3>
+        <ul>
+          <li><a href="bands.html#city-of-london">City of London</a></li>
+          <li><a href="bands.html#macanta">Macánta</a></li>
+        </ul>
+      </article>
+      <article class="roster-col">
+        <h3 class="roster-grade">Grade 3B</h3>
+        <ul>
+          <li><a href="bands.html#scots-guards">Scots Guards Association Pipes &amp; Drums — South</a></li>
+        </ul>
+      </article>
+      <article class="roster-col">
+        <h3 class="roster-grade">Grade 4A</h3>
+        <ul>
+          <li><a href="bands.html#plymouth">City of Plymouth</a></li>
+          <li><a href="bands.html#ratae">Ratae</a></li>
+          <li><a href="bands.html#seaforth">Seaforth Highlanders <small>(Leicester)</small></a></li>
+          <li><a href="bands.html#laidlaw">Laidlaw Memorial</a></li>
+          <li><a href="bands.html#wolverhampton">Wolverhampton</a></li>
+        </ul>
+      </article>
+      <article class="roster-col">
+        <h3 class="roster-grade">Grade 4B</h3>
+        <ul>
+          <li><a href="bands.html#cambridgeshire">Cambridgeshire Caledonian</a></li>
+          <li><a href="bands.html#glen-duart">Glen Duart</a></li>
+          <li><a href="bands.html#milton-keynes">Milton Keynes &amp; District</a></li>
+          <li><a href="bands.html#reading-scottish">Reading Scottish</a></li>
+          <li><a href="bands.html#standard-triumph">The Standard Triumph</a></li>
+          <li><a href="bands.html#stow">Stow Caledonian</a></li>
+          <li><a href="bands.html#glenmoriston">Suffolk Glenmoriston</a></li>
+        </ul>
+      </article>
+      <article class="roster-col">
+        <h3 class="roster-grade">Novice Juvenile B</h3>
+        <ul>
+          <li><a href="bands.html#gordons-school">Gordon's School</a></li>
+        </ul>
+        <h3 class="roster-grade roster-grade-tight">Ungraded</h3>
+        <ul>
+          <li><a href="bands.html#blackwater">Blackwater Thistle</a></li>
+          <li><a href="bands.html#hampshire">Hampshire Caledonian</a></li>
+          <li><a href="bands.html#oatlands">Oatlands Park</a></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────────── CTA BAND ───────────────────────────── -->
+<section class="cta">
+  <div class="container cta-inner">
+    <div class="cta-text">
+      <span class="kicker">Get involved</span>
+      <h2 class="section-title">Whether you're starting out or competing<br>at Grade 1 — there's a place for you.</h2>
+    </div>
+    <div class="cta-buttons">
+      <a class="btn btn-primary lg" href="bands.html">Find a band</a>
+      <a class="btn btn-text" href="about.html#contact">Become a Branch member →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────────── FOOTER ───────────────────────────── -->
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="rune" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none">
+            <ellipse cx="20" cy="14" rx="4" ry="5" fill="#dde0d8"/>
+            <path d="M16 14 L13 9 M20 13 L20 7 M24 14 L27 9" stroke="#dde0d8" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M18 19 Q20 24 22 19" fill="#c5a878"/>
+            <path d="M20 20 L20 34" stroke="#dde0d8" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <p class="foot-name">The Royal Scottish<br>Pipe Band Association</p>
+        <p class="foot-sub">London &amp; the South of England Branch · Founded 1965 · Charity 1183503</p>
+      </div>
+
+      <div class="foot-cols">
+        <div class="foot-col">
+          <span class="foot-h">Compete</span>
+          <a href="contests.html">Contests</a>
+          <a href="contests.html#draws">Contest Draws</a>
+          <a href="results.html">Results</a>
+          <a href="diary.html">Diary</a>
+        </div>
+        <div class="foot-col">
+          <span class="foot-h">Branch</span>
+          <a href="about.html#officials">Officials</a>
+          <a href="about.html#safeguarding">Safeguarding</a>
+          <a href="about.html#history">History</a>
+          <a href="about.html#agm">AGM Archive</a>
+        </div>
+        <div class="foot-col">
+          <span class="foot-h">Learn</span>
+          <a href="learn.html#sqa">SQA Qualifications</a>
+          <a href="learn.html#clasp">CLASP League</a>
+          <a href="learn.html#training">Training Days</a>
+          <a href="learn.html#summer-school">RSPBA Summer School</a>
+        </div>
+        <div class="foot-col">
+          <span class="foot-h">Connect</span>
+          <a href="about.html#contact">Contact</a>
+          <a href="about.html#documents">Documents</a>
+          <a href="https://www.facebook.com/groups/RSPBA.London/" target="_blank" rel="noopener">Facebook Group</a>
+          <a href="https://rspba.org" target="_blank" rel="noopener">RSPBA HQ Glasgow</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© RSPBA London &amp; SoE Branch · 2009 — present</span>
+      <span>Privacy · Terms · Safeguarding policy</span>
+    </div>
+  </div>
+</footer>
+
+<div id="tweaks-root"></div>
+
+<script src="image-slot.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="tweaks.jsx"></script>
+
+<script>
+(function(){
+  var root = document.getElementById('countdown');
+  if (!root) return;
+  var target = new Date(root.dataset.target).getTime();
+  function tick(){
+    var diff = target - Date.now();
+    if (diff < 0) diff = 0;
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor(diff % 86400000 / 3600000);
+    var m = Math.floor(diff % 3600000 / 60000);
+    var s = Math.floor(diff % 60000 / 1000);
+    var qa = function(u){ return root.querySelector('[data-u="'+u+'"]'); };
+    qa('d').textContent = String(d).padStart(2,'0');
+    qa('h').textContent = String(h).padStart(2,'0');
+    qa('m').textContent = String(m).padStart(2,'0');
+    qa('s').textContent = String(s).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
